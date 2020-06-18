@@ -1,5 +1,3 @@
-image: alpine
-
 stages:
   - build
   - test
@@ -12,8 +10,7 @@ cache:
 
 install_dependencies:
   stage: build
-  services:
-    - node:latest
+  image: node:9-alpine
   script:
     - npm install
     - cd test
@@ -37,8 +34,7 @@ testing:
 
 build_docs:
   stage: build
-  services:
-    - node:latest
+  image: node:9-alpine
   script:
     - npm install -g jsdoc
     - jsdoc sources/Helper.js sources/engine/ sources/models/ -d public/docs --readme README.md
@@ -48,6 +44,7 @@ build_docs:
 
 pages:
   stage: deploy
+  image: alpine
   script:
     - mkdir -p public
     - cp -r public/docs public/
