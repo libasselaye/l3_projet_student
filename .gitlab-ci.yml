@@ -25,6 +25,7 @@ variables:
 
 testing:
   stage: test
+  image: node:9-alpine
   services:
     - mongo:latest
   script: 
