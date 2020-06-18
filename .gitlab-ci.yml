@@ -26,7 +26,6 @@ variables:
 testing:
   stage: test
   services:
-    - node:latest
     - mongo:latest
   script: 
     - cd test
