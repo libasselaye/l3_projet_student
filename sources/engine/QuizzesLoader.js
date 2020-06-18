@@ -28,6 +28,7 @@ class QuizzesLoader {
      * @static
      * @method getQuizzesByType
      * @param {String} type le type de phase des questions que l'on veut recupérer
+     * @param {number} limit Le nombre maximum de question à récupérer
      * @example
      * QuestionLoader.getQuestionsByType(QuestionLoader.QUESTION_TYPE_NUMBER)
      * // Retourne un objet de type 'Query'
