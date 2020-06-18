@@ -44,7 +44,14 @@ build_docs:
     - jsdoc sources/Helper.js sources/engine/ sources/models/ -d public/docs --readme README.md
   artifacts:
     paths:
-      - public
+      - public/docs
 
 pages:
   stage: deploy
+  script:
+    - mkdir -p public
+    - cp -r public/docs public/
+    - cp public/index.html public/
+  artifacts:
+    paths:
+      - public
