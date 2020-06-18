@@ -47,8 +47,6 @@ pages:
   image: alpine
   script:
     - mkdir -p public
-    - cp -r public/docs public/
-    - cp public/index.html public/
   artifacts:
     paths:
       - public
