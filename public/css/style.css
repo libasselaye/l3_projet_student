@@ -1,0 +1,41 @@
+/* .conteneur{
+	height: 600px;
+	background-color: white;
+} */
+/* .image{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+     } */
+
+/* .center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+} */
+
+/* .logo {
+    position: absolute;
+    top:-20px;
+    left:60px; 
+}*/
+body {
+    background: linear-gradient(to top, #969fc1 -47%, #ffffff 44%);
+    background-repeat: no-repeat; 
+    min-height: 100vh ;
+    max-height: 100vh ;
+}
+.avatar{
+    position: absolute;
+    top:180px;
+    left:50%;
+    transform: translate(-50%, -50%); 
+}
+
+
+
