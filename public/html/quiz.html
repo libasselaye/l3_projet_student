@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Quiz</title>
+
+        <link
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <style>
+            #question-area {
+                width: inherit;
+            }
+            #score-tab {
+                position: absolute;
+                bottom: 0em;
+                left: 40%;
+
+                /* background-color: lawngreen; */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row my-5">
+                <div class="col-md-8 offset-md-2">
+                    <div class="shadow-lg rounded" id="question-area">
+                        <div class="row my-5">
+                            <div class="col-md-2 align-self-center">
+                                <div class="text-center">
+                                    <em
+                                        class="fa fa-user fa-5x text-primary"
+                                    ></em>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <h1 class="display-3">
+                                    Trouvez la racine carrée de 49
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="progress">
+                                    <div
+                                        class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                                        role="progressbar"
+                                        aria-valuenow="0"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                        style="width: 0%;"
+                                        id="timeProgress"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-md-6 offset-md-3 pt-5">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="text-center">
+                                <em class="fa fa-user fa-4x text-danger"></em>
+                                <div class="display-6"><em>Pseudo</em></div>
+                                <div class="display-5"><strong>15</strong></div>
+                            </td>
+                            <td class="text-center">
+                                <em class="fa fa-user fa-4x text-primary"></em>
+                                <div class="display-6"><em>Pseudo</em></div>
+                                <div class="display-5"><strong>15</strong></div>
+                            </td>
+                            <td class="text-center">
+                                <em class="fa fa-user fa-4x text-success"></em>
+                                <div class="display-6"><em>Pseudo</em></div>
+                                <div class="display-5"><strong>15</strong></div>
+                            </td>
+                            <td class="text-center">
+                                <em class="fa fa-user fa-4x text-warning"></em>
+                                <div class="display-6"><em>Pseudo</em></div>
+                                <div class="display-5"><strong>15</strong></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Scripts -->
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/fontawesome.min.js"
+            integrity="sha256-bP9MBDJ4xkv81w/A2cgwRonMI+eelvZwm7e8rP5JIxA="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"
+        ></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                step = 0;
+                setInterval(function () {
+                    if (step < 100) {
+                        step += 5;
+                        $("#timeProgress").attr({
+                            "aria-valuenow": step,
+                            style: "width: " + step + "%",
+                        });
+                    } else {
+                        step = 0;
+                    }
+                }, 1000);
+            });
+        </script>
+    </body>
+</html>
