@@ -36,6 +36,16 @@ class Helper {
         }
         return myList;
     }
+
+    /**
+     * Méthode random pour générer les nombres aléatoires
+     *
+     * @param {number} min - nombre entier minimum
+     * @param {number} max - nombre entier maximum
+     */
+    static randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+    }
 }
 
 module.exports = Helper;
