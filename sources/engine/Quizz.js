@@ -16,7 +16,7 @@ class Quizz {
      * Constructeur de la classe Quizz
      */
     constructor() {
-      //  this._currentPhase = Phase(Helper.QUESTION_TYPE_PROPOSAL);
+        //  this._currentPhase = Phase(Helper.QUESTION_TYPE_PROPOSAL);
         this._counterPhase = 1;
         this._players = new Map();
         this._playersResponse = {};
@@ -108,19 +108,30 @@ class Quizz {
     }
 
     /**
-     * Ajout d'un nouveau joueur au Map
+     * Ajoute un joueur à la partie
      *
      * @param {String} id L'identifiant attribué par le socket
      * @param {String} pseudo Le pseudo du joueur
      * @returns {boolean} 'true' si l'ajout a été fait, 'false' sinon
      */
     register(id, pseudo) {
+        pseudo = pseudo.toLocaleLowerCase();
+
         if (this.players.size < 4) {
             let player = new Player(id, pseudo);
             this.players.set(id, player);
             return true;
         }
         return false;
+    }
+
+    /**
+     * Supprime un joueur de la partie
+     *
+     * @param {String} id identifiant socket du joueur
+     */
+    removePlayer(id) {
+        delete this.players[id];
     }
 
     /**
@@ -291,6 +302,14 @@ class Quizz {
 
     printResponse() {
         return this.currentPhase.currentQuestion.proposals;
+    }
+
+    getPlayers() {
+        let newPlayers = [];
+        this.players.forEach(function (value, cle, map) {
+            newPlayers.push({ pseudo: value.pseudo, score: value.score });
+        });
+        return newPlayers;
     }
 
     // permet de suivre le temps donné au joueur pour donner sa réponse

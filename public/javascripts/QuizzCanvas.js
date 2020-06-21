@@ -4,33 +4,34 @@
  */
 
 class QuizzCanvas {
-  constructor() {
-    // this.canvas = document.querySelector('#game-canvas');
-    // this.context = this.canvas.getContext('2d');
+    constructor() {}
 
-  }
-
-  /*drawPlayer(player) {
-    const { x, y, r, color } = player;
-    this.context.beginPath();
-    this.context.arc(x, y, r, 0, 2 * Math.PI, false);
-    this.context.fillStyle = color;
-    this.context.fill();
-  }
-
-
-  redraw(data) {
-    var identifiant = 0;
-    // Clear everything
-   // this.context.clearRect(0, 0, 600, 600);
-    // Draw all players
-    const { players } = data;
-    //players.forEach((player) => console.log('Je suis le player n°' , identifiant+1 ));
-    //players.forEach((player) => this.reponse(player));
-  }*/
-
-  
-
-
-
+    updateWaiting(players) {
+        let classValues = ["primary", "success", "warning", "danger"];
+        let nodeWaitingPlayers = document.querySelector("#waitingPlayers");
+        let t = players.length;
+        nodeWaitingPlayers.innerHTML = "";
+        for (var i = 0; i < 4; i++) {
+            if (i < t) {
+                nodeWaitingPlayers.innerHTML +=
+                    '<td class="text-center">\
+                    <em class="fa fa-user fa-4x text-' +
+                    classValues[i] +
+                    '"></em>\
+                    <div class="display-6"><em>' +
+                    players[i]["pseudo"] +
+                    "</em></div></td>";
+            } else {
+                nodeWaitingPlayers.innerHTML +=
+                    '<td class="text-center">\
+                    <em class="fa fa-user fa-4x text-secondary"></em>\
+                    <div class="display-6"><em></em></div>\
+                </td>';
+            }
+        }
+        if (t >= 2 && t <= 4) {
+            document.querySelector("#homePlayButton").innerHTML =
+                '<button type="button" class="btn btn-primary btn-lg btn_jouer">Allez Jouer!  </button>';
+        }
+    }
 }

@@ -6,18 +6,15 @@
  */
 
 class ControlsSocket {
-  constructor() {
-    this.socket = io();
-   // this.socket.emit('register');
-  }
+    constructor() {
+        this.socket = io();
+    }
 
-  signin() {
-    this.socket.emit('sign_in');
-    this.socket.emit('pseudo' , this.pseudo);
-  }
+    register(playerPseudo) {
+        this.socket.emit("register", { pseudo: playerPseudo });
+    }
 
-  reponse() {
-    this.socket.emit('reponse');
-  }
+    reponse() {
+        this.socket.emit("reponse");
+    }
 }
-
