@@ -168,5 +168,15 @@ var dots = window.setInterval( function() {
         wait.innerHTML += ".";
     }, 500);
 </script>
+
+ <!-- JavaScripts -->
+ <script src="/socket.io/socket.io.js"></script>
+ <script src="/javascripts/QuizzCanvas.js"></script>
+ <script src="/javascripts/QuizzSocket.js"></script>
+ <script>
+   const canvas = new QuizzCanvas();
+   const socket = new QuizzSocket(canvas);
+ </script>
+
 </body>
 </html>

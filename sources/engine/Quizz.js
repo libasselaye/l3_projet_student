@@ -16,7 +16,7 @@ class Quizz {
      * Constructeur de la classe Quizz
      */
     constructor() {
-        this._currentPhase = Phase(Helper.QUESTION_TYPE_PROPOSAL);
+      //  this._currentPhase = Phase(Helper.QUESTION_TYPE_PROPOSAL);
         this._counterPhase = 1;
         this._players = new Map();
         this._playersResponse = {};
@@ -272,7 +272,8 @@ class Quizz {
     /**
      * Mise à jour du tableau des joueurs ayant déjà repondus
      * @param {String} playerId
-     * @returns {number} -1 si le joueur a déjà repondu, valeur>0 si pas encore repondu à la question(cette valeur correspond à l'ordre de reponse des joueurs)
+     * @returns {number} -1 si le joueur a déjà repondu, valeur>0 si pas encore repondu à la question
+     * (cette valeur correspond à l'ordre de reponse des joueurs)
      */
     updatePlayersResponse(playerId) {
         if (this.playersResponse.includes(playerId)) {
