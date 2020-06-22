@@ -12,12 +12,12 @@
     <body>
     	
     		
-        <div class="container">
+        <div class="container" id="controlsContent">
     			
             <div class="logo">
                 <img src="../images/logo.png" alt="logo" class="img-fluid" alt="Responsive image">
             </div>
-            <div id="controlsContent">
+            <div>
                 <form class="form-inline" id="pseudoForm">
                     <div class="form-group mb-2">
                       <label for="staticEmail2" class="sr-only">Email</label>
@@ -39,8 +39,8 @@
           <script src="/javascripts/ControlsCanvas.js"></script>
           <script src="/javascripts/ControlsEvents.js"></script>
           <script>
-            const socket = new ControlsSocket();
             const canvas = new ControlsCanvas();
+            const socket = new ControlsSocket(canvas);
             const events = new ControlsEvents(socket, canvas);
           </script>
     	

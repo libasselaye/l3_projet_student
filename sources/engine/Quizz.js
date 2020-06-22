@@ -16,12 +16,13 @@ class Quizz {
      * Constructeur de la classe Quizz
      */
     constructor() {
-        //  this._currentPhase = Phase(Helper.QUESTION_TYPE_PROPOSAL);
+        this._currentPhase = null;
         this._counterPhase = 1;
         this._players = new Map();
         this._playersResponse = {};
         this._timer = null;
         this._step = 0;
+        this._started = false;
     }
 
     get step() {
@@ -89,6 +90,14 @@ class Quizz {
         this._currentPhase = value;
     }
 
+    get started() {
+        return this._started;
+    }
+
+    set started(value) {
+        this._started = value;
+    }
+
     /**
      * Retourne le Map des joueurs en cours
      * @public
@@ -117,7 +126,7 @@ class Quizz {
     register(id, pseudo) {
         pseudo = pseudo.toLocaleLowerCase();
 
-        if (this.players.size < 4) {
+        if (this.players.size < 4 && !this.started) {
             let player = new Player(id, pseudo);
             this.players.set(id, player);
             return true;
@@ -173,7 +182,8 @@ class Quizz {
         let order = updatePlayersResponse(playerId);
         if (order == this.players.size) {
             // Renvoyer la reponse à la quetion au moniteur car tous les joueurs ont déjà repondu
-            this.displayCorrectResponse();
+            console.log("Order");
+            return;
         }
         if (order != -1) {
             // vérifier si la reponse est vraie
@@ -193,21 +203,29 @@ class Quizz {
      * puis fait appel à play
      */
     displayCorrectResponse() {
-        // envoyer la reponse au moniteur
+        return this.currentPhase.currentQuestion.answer;
     }
 
     /**
      * Méthode start appelée par le socket pour démarrer une nouvelle partie
      */
-    start() {
+    async start() {
         if (this.players.size >= 2 && this.players.size <= 4) {
-            this.play();
+            this.started = true;
+            this.currentPhase = await Phase.build(
+                Helper.QUESTION_TYPE_PROPOSAL
+            );
         } else {
-            return "La partie ne peut pas démarrer car on n'a pas le nombre de joueurs requis (2 à 4)";
+            this.started = false;
         }
+        return this.started;
     }
 
-    play() {
+    /**
+     * Renvoi 0 si la partie est complétement terminé
+     * sinon 1 si une nouvelle question est disponible
+     */
+    async play() {
         let quizzEnd = true;
         if (!this.currentPhase.isEndOfPhase()) {
             quizzEnd = false;
@@ -215,36 +233,26 @@ class Quizz {
             quizzEnd = false;
             switch (this.counterPhase) {
                 case 1:
-                    this.currentPhase = new Phase(
+                    this.currentPhase = await Phase.build(
                         Helper.QUESTION_TYPE_TRUE_FALSE
                     );
                     this.counterPhase++;
                     break;
                 case 2:
-                    this.currentPhase = new Phase(Helper.QUESTION_TYPE_NUMBER);
+                    this.currentPhase = await Phase.build(
+                        Helper.QUESTION_TYPE_NUMBER
+                    );
                     this.counterPhase++;
                     break;
             }
         }
         if (quizzEnd) {
             // envoyer un signal au client pour signaler la fin du jeu
-        } else {
-            this.currentPhase.nextQuestion();
-            this.printQuestion();
-            this.printResponse();
-            this.step = 0;
-            this.timer = setInterval(function () {
-                if (this.step < 100) {
-                    this.step += 5;
-                    // envoyer le step au moniteur pour le progressbar
-                } else {
-                    this.step = 0;
-                    // envoyer au moniteur que le delai est dépassé
-                    this.playersResponse = {};
-                    displayCorrectResponseResponse();
-                }
-            }, 1200);
+            return 0;
         }
+        // else {
+        this.currentPhase.nextQuestion();
+        return 1;
     }
 
     /**

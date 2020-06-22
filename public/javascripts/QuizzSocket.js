@@ -9,13 +9,38 @@ class QuizzSocket {
         this.canvas = canvas;
         // Socket communications
         this.socket = io();
-        //this.socket.on('update', (data) => this.canvas.redraw(data));
-        //this.socket.on('update' , ()=> console.log('Je vous recois Mr Serveur'));
         this.socket.on("update_players", (data) => {
-            console.log(data);
             if (data) {
                 canvas.updateWaiting(data);
             }
         });
+        this.socket.on("status_start_game", (data) => {
+            if (data == "good") {
+                this.playGame();
+            } else if (data == "bad") {
+                // La partie n'a pas pu démarrer
+            }
+        });
+        this.socket.on("push_question_to_monitor", (data) => {
+            canvas.drawQuestion(data);
+        });
+        this.socket.on("timer_step", (data) => {
+            // console.log(data);
+            canvas.updateProgressBar(data);
+        });
+        this.socket.on("timer_step_timeout", (data) => {
+            console.log("Fin");
+        });
+        this.socket.on("push_correct_response", (data) => {
+            console.log(data);
+        });
+    }
+
+    playGame() {
+        this.socket.emit("play_game");
+    }
+
+    startGame() {
+        this.socket.emit("start_game");
     }
 }
