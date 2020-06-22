@@ -14,7 +14,4 @@ describe("test method of QuizzesLoader", () => {
             });
         }
     });
-    test("test", () => {
-        expect(true).toBeTruthy();
-    });
 });

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+       
         <title>SaisirPseudo</title>
         <link
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -30,6 +30,7 @@
                     class="fa fa-user fa-5x text-primary"
                 ></em>
             </div>
+<<<<<<< HEAD
         
       </div>
 
@@ -50,15 +51,41 @@
         </div>
             
         
-        
+=======
+            <div id="controlsContent">
+                <form class="form-inline" id="pseudoForm">
+                    <div class="form-group mb-2">
+                      <label for="staticEmail2" class="sr-only">Email</label>
+                      <input type="text" readonly class="form-control-plaintext" id="staticEmail2" >
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                          <input type="text" id="pseudo" placeholder="Entrez votre Pseudo">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2" id="pseudoFormSubmit"> Entrer</button>
+                  </form>
+            </div>
         </div>
 
+>>>>>>> df130f2cdc0a515b9e7b39fc39259e6f254a048d
+        
+
+<<<<<<< HEAD
         
     		
+=======
+           <!-- JavaScripts -->
+          <script src="/socket.io/socket.io.js"></script>
+          <script src="/javascripts/ControlsSocket.js"></script>
+          <script src="/javascripts/ControlsCanvas.js"></script>
+          <script src="/javascripts/ControlsEvents.js"></script>
+          <script>
+            const socket = new ControlsSocket();
+            const canvas = new ControlsCanvas();
+            const events = new ControlsEvents(socket, canvas);
+          </script>
+>>>>>>> df130f2cdc0a515b9e7b39fc39259e6f254a048d
     	
-    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    
     	
     </body>
 </html>

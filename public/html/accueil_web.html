@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Accueil choix joueur</title>
+
+        <link
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <style type="text/css">
+        	.attente_jr{
+        		font-family: 'times new roman';
+        	}
+        	/*.container{
+        		background-color: pink;
+        	}*/
+        </style>
+</head>
+<body>
+
+<div class="container">
+	<div class="topbar">
+		<div class="topbar-left">          
+                <span>
+                	<img src="../images/th.png" alt="" height="150">
+                </span>
+        </div>
+     </div>
+        <div class="row">
+        	<div class="col-md-3">
+        		<span class="h4">
+        			Principe du jeu
+        		</span>
+        	</br>
+        		<span>
+        			C'est un jeu de quizz mettant en maximum 4 et au minimum 2 joueurs. La partie se deroulera en 3 phases.
+
+        		</span>
+        		<div class="col-md-2 pt-4">
+        			<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#principeModal">Lire Plus</button>
+
+        		</div>
+        	</div>
+        	
+	        	<div class="col-md-6 offset-md-1 pt-5">
+	                    <table class="table table-borderless">
+	                        <tr id="waitingPlayers">
+                                <td class="text-center">
+                                    <em class="fa fa-user fa-4x text-secondary"></em>
+                                    <div class="display-6"><em></em></div>
+                                </td>
+	                            <td class="text-center">
+                                    <em class="fa fa-user fa-4x text-secondary"></em>
+                                    <div class="display-6"><em></em></div>
+                                </td>
+                                <td class="text-center">
+                                    <em class="fa fa-user fa-4x text-secondary"></em>
+                                    <div class="display-6"><em></em></div>
+                                </td>
+                                <td class="text-center">
+                                    <em class="fa fa-user fa-4x text-secondary"></em>
+                                    <div class="display-6"><em></em></div>
+                                </td>
+	                        </tr>
+	                    </table>
+	             </div>
+	              
+        </div>
+	
+	
+
+	
+                
+    
+     <div class="row">
+     			
+     	<div class="col-md-5 offset-md-5 pt-4">
+     		<span class="h1 text-center attente_jr">En attente de joueur<span id="wait">.</span></span>
+     	</div>
+	     </div>	
+
+	     <div class="row">
+	     	<div class="col-md-2 offset-md-10 pt-4" id="homePlayButton">
+
+	     	</div>	
+	     </div>
+
+	     <div class="row">
+	     	<div class="col-md-6 offset-md-0 pt-2">
+	     		<span> <img src="../images/warning_icon.png" alt="" height="30">   Il faut un minimum de deux joueurs pour commencer le jeu</span>
+	     	</div>
+	     	
+	     </div>	
+	     	
+
+</div>	
+
+<!-- Modal -->
+						<div class="modal fade" id="principeModal" tabindex="-1" role="dialog" aria-labelledby="principeModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Principe du Jeu</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        C'est un jeu de quiz mettant en compétition au maximum 4 et au minimum 2 joueurs. La partie se déroulera en 3 phases, la première
+								dénommée "3 propositions"(cela consiste à choisir une bonne réponse parmi 3 propositions à une question donnée) qui comporte 5
+								questions, suivie d'une phase "vrai/faux" avec 5 questions également et enfin on aura la phase "Nombres" qui sera constituée que des
+								questions dont les réponses seront des nombres. En résumé, une partie aura 15 questions. A l'issue d'une partie on aura le classement des joueurs. Ces 
+								derniers ont également le choix d'utiliser 1 joker durant la partie. Ce jeu dispose de 3 types de jokers à savoir, le joker "-1"
+								qui retire une fausse proposition parmi les 3 propositions données au préalable (joker disponible seulement sur la première phase). On
+								dispose également du joker "x2" qui multiplie les points du joueurs par 2 s'il arrive à trouver la bonne réponse. Ensuite un troisième
+								joker "avis du public" disponible également qu'à la phase 1 qui proposera une reponse parmi les 3 proposées 
+								(ça peut être une vraie réponse tout comme une fausse).
+
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+						        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+
+
+
+<!-- script -->
+<script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/fontawesome.min.js"
+            integrity="sha256-bP9MBDJ4xkv81w/A2cgwRonMI+eelvZwm7e8rP5JIxA="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"
+        ></script>
+
+
+<script>
+var dots = window.setInterval( function() {
+    var wait = document.getElementById("wait");
+    if ( wait.innerHTML.length > 6 ) 
+        wait.innerHTML = "";
+    else 
+        wait.innerHTML += ".";
+    }, 500);
+</script>
+
+ <!-- JavaScripts -->
+ <script src="/socket.io/socket.io.js"></script>
+ <script src="/javascripts/QuizzCanvas.js"></script>
+ <script src="/javascripts/QuizzSocket.js"></script>
+ <script>
+   const canvas = new QuizzCanvas();
+   const socket = new QuizzSocket(canvas);
+ </script>
+
+</body>
+</html>
