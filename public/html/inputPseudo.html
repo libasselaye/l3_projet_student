@@ -1,63 +1,67 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="utf-8"/>
-            <meta http - equiv="X-UA-Compatible" content="IE=edge"/>
-            <title>
-                Saisir Pseudo < /title>
+<html>
+    <head>
+        <meta charset="utf-8" />
 
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap / 4.5 .0 / css / bootstrap.min.css " integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
+        <title>SaisirPseudo</title>
 
-                <link
-                rel="stylesheet" type="text/css " href="../css/style.css "/>
-                <!-- < style type = "text/css" >.pseudoBox {
-                    top : 20 %;
-                    left : 45 %;
-                    position : absolute;
-                    width : 280 px;
-                }
-                body {
-                    font - family : Arial;
-                    font - weight : bold;
-                    /*background-image: url("../images/toureffeil.jpg");*/
-                }
-                </style> -->
-                </head>
-                    <body>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+        />
 
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    </head>
+    <body>
+        <div class="container" id="controlsContent">
+            <div class="logo">
+                <img
+                    src="../images/logo.png"
+                    alt="logo"
+                    class="img-fluid"
+                    alt="Responsive image"
+                />
+            </div>
+            <div>
+                <form class="form-inline" id="pseudoForm">
+                    <div class="form-group mb-2">
+                        <label for="staticEmail2" class="sr-only">Email</label>
+                        <input
+                            type="text"
+                            readonly
+                            class="form-control-plaintext"
+                            id="staticEmail2"
+                        />
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input
+                            type="text"
+                            id="pseudo"
+                            placeholder="Entrez votre Pseudo"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-primary mb-2"
+                        id="pseudoFormSubmit"
+                    >
+                        Entrer
+                    </button>
+                </form>
+            </div>
+        </div>
 
-                        <div class="container" id="controlsContent">
-
-                            <div class="logo">
-                                <img src="../images / logo.png " alt=" logo " class=" img - fluid " alt=" Responsive image "></div>
-                            <div>
-                                <form class="form-inline" id="pseudoForm">
-                                    <div class="form-group mb-2">
-                                        <label for="staticEmail2" class="sr-only">
-                                            Email < /label>
-                                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2"></div>
-                                        <div class="form-group mx-sm-3 mb-2">
-                                            <input type="text" id="pseudo" placeholder="Entrez votre Pseudo">
-                                        </div>
-                                        <!-- <div class="form-group mx-sm-3 mb-2">
-                                                                                                <label for="pseudo">Pseudo</label>
-                                                                                                <input type="text" class="form-control" id="playerPseudo" placeholder="Votre pseudo">
-                                                                                            </div>
-                                                                                            <button type="submit" class="btn btn-primary mb-2">Envoyez le pseudo</button> -->
-                                        </form></div>
-                                    </div>
-
-                                    <!--  <img src="../images/avatar1.png" alt="avatar" class="img-fluid" alt="Responsive image" > -->
-
-                                    <!-- JavaScripts -->
-                                    <script src="/socket.io/socket.io.js"></script>
-                                    <script src="/javascripts/ControlsSocket.js"></script>
-                                    <script src="/javascripts/ControlsCanvas.js"></script>
-                                    <script src="/javascripts/ControlsEvents.js"></script>
-                                    <script>
-                                        const canvas = new ControlsCanvas();
-                                        const socket = new ControlsSocket(canvas);
-                                        const events = new ControlsEvents(socket, canvas);
-                                    </script>
-                                </body>
-                            </html>
+        <!-- JavaScripts -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/javascripts/ControlsSocket.js"></script>
+        <script src="/javascripts/ControlsCanvas.js"></script>
+        <script src="/javascripts/ControlsEvents.js"></script>
+        <script>
+            const canvas = new ControlsCanvas();
+            const socket = new ControlsSocket(canvas);
+            const events = new ControlsEvents(socket, canvas);
+        </script>
+    </body>
+</html>

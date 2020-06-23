@@ -1,0 +1,53 @@
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+    - test/node_modules/
+
+install_dependencies:
+  stage: build
+  image: node:9-alpine
+  script:
+    - npm install
+    - cd test
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+      - test/node_modules/
+
+variables:
+  MONGO_URI: 'mongodb://mongo/the_competitors_db'
+
+testing:
+  stage: test
+  image: node:9-alpine
+  services:
+    - mongo:latest
+  script: 
+    - cd test
+    - npm run test
+
+build_docs:
+  stage: build
+  image: node:9-alpine
+  script:
+    - npm install -g jsdoc
+    - jsdoc sources/Helper.js sources/engine/ sources/models/ -d public/docs --readme README.md
+  artifacts:
+    paths:
+      - public/docs
+
+pages:
+  stage: deploy
+  image: alpine
+  script:
+    - mkdir -p public
+    - mv public/docs public/
+  artifacts:
+    paths:
+      - public
