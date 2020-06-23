@@ -11,9 +11,13 @@ class ControlsSocket {
         this.canvas = canvas;
         this.socket.on("push_proposals_to_controls", (data) => {
             if (data) {
-                canvas.drawProposals(data);
+                canvas.drawProposals(data, this);
             }
         });
+    }
+
+    sendPlayerResponse(data) {
+        this.socket.emit("send_player_response", { response: data });
     }
 
     register(playerPseudo) {

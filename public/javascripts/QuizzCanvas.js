@@ -7,7 +7,7 @@ class QuizzCanvas {
     constructor() {}
 
     updateWaiting(players) {
-        let classValues = ["primary", "success", "warning", "danger"];
+        // let classValues = ["primary", "success", "warning", "danger"];
         let nodeWaitingPlayers = document.querySelector("#waitingPlayers");
         let t = players.length;
         nodeWaitingPlayers.innerHTML = "";
@@ -16,7 +16,7 @@ class QuizzCanvas {
                 nodeWaitingPlayers.innerHTML +=
                     '<td class="text-center">\
                     <em class="fa fa-user fa-4x text-' +
-                    classValues[i] +
+                    players[i]["color"] +
                     '"></em>\
                     <div class="display-6"><em>' +
                     players[i]["pseudo"] +
