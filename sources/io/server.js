@@ -37,10 +37,9 @@ function io(server) {
         socket.on("play_game", () => {
             quizz.play().then(function (data) {
                 if (data == 1) {
-                    console.log(quizz.printQuestion());
                     io.emit("push_question_to_monitor", {
                         question: quizz.printQuestion(),
-                        phase: quizz.currentPhase.id,
+                        phase: quizz.counterPhase,
                     });
 
                     io.emit("push_proposals_to_controls", {
@@ -48,7 +47,7 @@ function io(server) {
                             quizz.counterPhase == 3
                                 ? []
                                 : Helper.shuffle(quizz.printResponse()),
-                        phase: quizz.currentPhase.id,
+                        phase: quizz.counterPhase,
                     });
 
                     quizz.step = 0;

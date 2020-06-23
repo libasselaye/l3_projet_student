@@ -230,19 +230,20 @@ class Quizz {
         if (!this.currentPhase.isEndOfPhase()) {
             quizzEnd = false;
         } else {
-            quizzEnd = false;
             switch (this.counterPhase) {
                 case 1:
                     this.currentPhase = await Phase.build(
                         Helper.QUESTION_TYPE_TRUE_FALSE
                     );
                     this.counterPhase++;
+                    quizzEnd = false;
                     break;
                 case 2:
                     this.currentPhase = await Phase.build(
                         Helper.QUESTION_TYPE_NUMBER
                     );
                     this.counterPhase++;
+                    quizzEnd = false;
                     break;
             }
         }
@@ -318,11 +319,6 @@ class Quizz {
             newPlayers.push({ pseudo: value.pseudo, score: value.score });
         });
         return newPlayers;
-    }
-
-    // permet de suivre le temps donné au joueur pour donner sa réponse
-    timeCounter() {
-        //TODO
     }
 
     /**

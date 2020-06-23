@@ -112,7 +112,7 @@ class Phase {
                 console.log(this.questions);
                 return null;
             }
-            this.counter;
+            this.counter--;
             let proposals = [];
             proposals[0] = this._currentQuestion.answer;
             switch (this.id) {

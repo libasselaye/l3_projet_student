@@ -2,6 +2,7 @@
  * Socket example.
  * Essentially for client socket communications.
  */
+var phase = 0;
 
 class QuizzSocket {
     constructor(canvas) {
@@ -22,7 +23,11 @@ class QuizzSocket {
             }
         });
         this.socket.on("push_question_to_monitor", (data) => {
-            canvas.drawQuestion(data);
+            if (phase != data["phase"]) {
+                console.log("nouvelle phase");
+                phase++;
+                setTimeout(canvas.drawQuestion(data), 3000);
+            }
         });
         this.socket.on("timer_step", (data) => {
             // console.log(data);
@@ -33,6 +38,7 @@ class QuizzSocket {
         });
         this.socket.on("push_correct_response", (data) => {
             console.log(data);
+            setTimeout(this.playGame(), 3000);
         });
     }
 

@@ -37,8 +37,10 @@ class QuizzCanvas {
     updateProgressBar(data) {
         if (data == undefined) return;
         let progress = document.getElementById("timeProgress");
-        progress.setAttribute("aria-valuenow", data);
-        progress.setAttribute("style", "width: " + data + "%");
+        if (progress) {
+            progress.setAttribute("aria-valuenow", data);
+            progress.setAttribute("style", "width: " + data + "%");
+        }
     }
 
     drawQuestion(data) {
