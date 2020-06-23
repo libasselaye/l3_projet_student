@@ -17,20 +17,12 @@
     <body>
     	
     		
-      <div class="container">
-        <div class="row my-4">
-            <div class="col-4 offset-4">
-                <img src="../images/logo.png" alt="logo" class="img-fluid" />   
+        <div class="container" id="controlsContent">
+    			
+            <div class="logo">
+                <img src="../images/logo.png" alt="logo" class="img-fluid" alt="Responsive image">
             </div>
-        </div>
-        <div class>
-          <div class="row align-items-center h-100">
-            <div class="=col-12" >
-                <em
-                    class="fa fa-user fa-5x text-primary"
-                ></em>
-            </div>
-            <div id="controlsContent">
+            <div>
                 <form class="form-inline" id="pseudoForm">
                     <div class="form-group mb-2">
                       <label for="inputPseudo" class="sr-only">Pseudo</label>
@@ -52,8 +44,8 @@
           <script src="/javascripts/ControlsCanvas.js"></script>
           <script src="/javascripts/ControlsEvents.js"></script>
           <script>
-            const socket = new ControlsSocket();
             const canvas = new ControlsCanvas();
+            const socket = new ControlsSocket(canvas);
             const events = new ControlsEvents(socket, canvas);
           </script>
     	

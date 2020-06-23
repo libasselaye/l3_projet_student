@@ -17,6 +17,9 @@ router.get("/", function (req, res, next) {
 router.get("/monitor", function (req, res, next) {
     res.sendFile("html/accueil_web.html", { root: __public });
 });
+// router.get("/question", function (req, res, next) {
+//     res.sendFile("html/quizMonitor.html", { root: __public });
+// });
 router.get("/controls", function (req, res, next) {
     res.sendFile("html/inputPseudo.html", { root: __public });
 });

@@ -19,19 +19,37 @@ class Phase {
      * var phase = new Phase("number"); // objet phase
      * @param {String} id L'id de la phase
      */
-    constructor(id) {
+    constructor(id, data) {
         this._id = id;
-        this._questions = {};
+        this._questions = data;
         this._counter = MAX_COUNTER;
         this._currentQuestion = null;
-        QuizzesLoader.getQuizzesByType(id, this.MAX_COUNTER).exec(function (
-            error,
-            questions
+    }
+
+    freeze(time) {
+        const stop = new Date().getTime() + time;
+        while (new Date().getTime() < stop);
+    }
+
+    static build(id) {
+        return QuizzesLoader.getQuizzesByType(id, MAX_COUNTER).then(function (
+            data
         ) {
-            if (!error) {
-                this._questions = questions;
+            if (data) {
+                return new Phase(id, data);
+            } else {
+                console.log("Questions don't load");
+                return new Phase(id, null);
             }
         });
+    }
+
+    get questions() {
+        return this._questions;
+    }
+
+    set questions(value) {
+        this._questions = value;
     }
 
     /**
@@ -87,21 +105,24 @@ class Phase {
      * sinon elle renvoie 'null'
      */
     nextQuestion() {
-        if (this._counter > 0 && this._questions) {
-            this._currentQuestion = this._questions[
-                MAX_COUNTER - this._counter
-            ];
-            this._counter--;
-            let proposals = {};
-            proposals.push(this._currentQuestion.answer);
-            switch (id) {
+        if (this.counter > 0 && this.questions) {
+            this.currentQuestion = this.questions[MAX_COUNTER - this.counter];
+            if (!this.currentQuestion) {
+                console.log("current question null");
+                console.log(this.questions);
+                return null;
+            }
+            this.counter--;
+            let proposals = [];
+            proposals[0] = this._currentQuestion.answer;
+            switch (this.id) {
                 case Helper.QUESTION_TYPE_PROPOSAL:
                     proposals.push(
-                        this._currentQuestion.proposals[Helper.randomInt(0, 3)]
+                        this._currentQuestion.proposals[Helper.randomInt(0, 1)]
                     );
-                    let i = Helper.randomInt(3, 5);
+                    let i = Helper.randomInt(1, 3);
                     proposals.push(
-                        this._currentQuestion.proposals[i == 3 ? i + 1 : i]
+                        this._currentQuestion.proposals[i == 1 ? i + 1 : i]
                     );
                     break;
                 case Helper.QUESTION_TYPE_TRUE_FALSE:

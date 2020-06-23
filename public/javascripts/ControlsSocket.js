@@ -6,8 +6,14 @@
  */
 
 class ControlsSocket {
-    constructor() {
+    constructor(canvas) {
         this.socket = io();
+        this.canvas = canvas;
+        this.socket.on("push_proposals_to_controls", (data) => {
+            if (data) {
+                canvas.drawProposals(data);
+            }
+        });
     }
 
     register(playerPseudo) {
