@@ -27,6 +27,8 @@ class QuizzSocket {
                 console.log("nouvelle phase");
                 phase++;
                 setTimeout(canvas.drawQuestion(data), 3000);
+            } else {
+                canvas.drawQuestion(data);
             }
         });
         this.socket.on("timer_step", (data) => {
