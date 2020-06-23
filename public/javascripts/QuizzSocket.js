@@ -10,6 +10,7 @@ class QuizzSocket {
         this.canvas = canvas;
         // Socket communications
         this.socket = io();
+        this.socket.emit("register");
         this.socket.on("update_players", (data) => {
             if (data) {
                 canvas.updateWaiting(data);

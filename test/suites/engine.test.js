@@ -5,30 +5,30 @@ const Player = player.Player;
 const Joker = player.Joker;
 
 // Test de Phase
-describe("Test method of Phase", () => {
-    test("Test Phase constructor", () => {
-        var phase = new Phase("number");
-        expect(phase.counter).toBe(5);
-    });
+// describe("Test method of Phase", () => {
+//     test("Test Phase constructor", () => {
+//         var phase = new Phase("number");
+//         expect(phase.counter).toBe(5);
+//     });
 
-    test("Test Phase nextQuestion", () => {
-        var phase = new Phase("number");
-        var question = phase.nextQuestion();
-        expect(question).not.toBeNull();
-        expect(phase.counter).toBe(4);
-    });
+//     test("Test Phase nextQuestion", () => {
+//         var phase = new Phase("number");
+//         var question = phase.nextQuestion();
+//         expect(question).not.toBeNull();
+//         expect(phase.counter).toBe(4);
+//     });
 
-    test("Test Phase isEndOfPhase", () => {
-        var phase = new Phase("number");
-        phase.nextQuestion();
-        phase.nextQuestion();
-        expect(phase.isEndOfPhase()).toBeFalsy();
-        phase.nextQuestion();
-        phase.nextQuestion();
-        phase.nextQuestion();
-        expect(phase.isEndOfPhase()).toBeTruthy();
-    });
-});
+//     test("Test Phase isEndOfPhase", () => {
+//         var phase = new Phase("number");
+//         phase.nextQuestion();
+//         phase.nextQuestion();
+//         expect(phase.isEndOfPhase()).toBeFalsy();
+//         phase.nextQuestion();
+//         phase.nextQuestion();
+//         phase.nextQuestion();
+//         expect(phase.isEndOfPhase()).toBeTruthy();
+//     });
+// });
 
 // Test de Player
 describe("Test method of Player", () => {

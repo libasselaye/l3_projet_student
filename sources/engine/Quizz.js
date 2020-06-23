@@ -4,6 +4,7 @@ const player = require("./Player.js");
 const Helper = require("../Helper.js");
 const Player = player.Player;
 const Joker = player.Joker;
+const PLAYER_COLOR = ["primary", "success", "warning", "danger"];
 
 /**
  * La classe représentant une partie de jeu
@@ -19,7 +20,7 @@ class Quizz {
         this._currentPhase = null;
         this._counterPhase = 1;
         this._players = new Map();
-        this._playersResponse = {};
+        this._playersResponse = [];
         this._timer = null;
         this._step = 0;
         this._started = false;
@@ -127,7 +128,7 @@ class Quizz {
         pseudo = pseudo.toLocaleLowerCase();
 
         if (this.players.size < 4 && !this.started) {
-            let player = new Player(id, pseudo);
+            let player = new Player(PLAYER_COLOR[this.players.size], pseudo);
             this.players.set(id, player);
             return true;
         }
@@ -174,28 +175,41 @@ class Quizz {
      *
      * @param {String} playerId Id socket id attribué au joueur
      * @param {String} response Reponse du joueur
-     * @returns {number} Renvoi le nouveau score du joueur si la reponse est correcte sinon 0
+     * @returns {number} Renvoi 1 si la reponse est correcte et que tu n'es pas le dernier à répondre,
+     *  0 si ta réponse est fausse et que tu es le dernier à répondre. 10 si t'es le dernier à
+     * répondre et que c'est correct, -1 si la réponse est fausse et que tu n'es pas le dernier à répondre
+     * -3 si tu tentes de répondre plus d'une fois à la même question
      */
     checkResponse(playerId, response) {
         // Vérifier s'il y a toujours du temps pour répondre
         // mettre à jour le nombre de joueurs ayant repondu correctement à cette question
-        let order = updatePlayersResponse(playerId);
-        if (order == this.players.size) {
-            // Renvoyer la reponse à la quetion au moniteur car tous les joueurs ont déjà repondu
-            console.log("Order");
-            return;
-        }
+        let order = this.updatePlayersResponse(playerId);
+
         if (order != -1) {
             // vérifier si la reponse est vraie
             let question = this.currentPhase.currentQuestion;
+            let trouve = false;
             if (question.answer == response) {
                 // calculer le score du joueur
                 // Score à renvoyer vers le moniteur
-                return computePlayerScore(playerId, playerResponseOrder);
+                console.log(
+                    "reponse est: " +
+                        question.answer +
+                        " et reponse proposée: " +
+                        response
+                );
+                this.computePlayerScore(playerId, order);
+                trouve = true;
             }
+            if (order == this.players.size) {
+                // Renvoyer la reponse à la quetion au moniteur car tous les joueurs ont déjà repondu
+                if (trouve) return 10;
+                return 0;
+            }
+            return trouve ? 1 : -1;
         }
-
-        return 0;
+        // Cas où ce joueur a déjà repondu
+        return -3;
     }
 
     /**
@@ -252,6 +266,7 @@ class Quizz {
             return 0;
         }
         // else {
+        this.playersResponse = [];
         this.currentPhase.nextQuestion();
         return 1;
     }
@@ -264,7 +279,7 @@ class Quizz {
      * @returns {number} score du joueur
      */
     computePlayerScore(playerId, playerResponseOrder) {
-        newScore = 0;
+        let newScore = 0;
         switch (playerResponseOrder) {
             case 1:
                 newScore += 5;
@@ -286,6 +301,7 @@ class Quizz {
             this.deactiveJoker(playerId, Joker.INCREASE_REWARD);
         }
         p.score += newScore;
+        console.log("Pseudo: " + p.pseudo + " et score: " + p.score);
         return p.score;
     }
 
@@ -296,11 +312,12 @@ class Quizz {
      * (cette valeur correspond à l'ordre de reponse des joueurs)
      */
     updatePlayersResponse(playerId) {
+        // console.log(this.playersResponse);
         if (this.playersResponse.includes(playerId)) {
             return -1; // car le joueur a déjà repondu à cette question
         }
         this.playersResponse.push(playerId);
-        let playerResponseOrder = playersResponse.length;
+        let playerResponseOrder = this.playersResponse.length;
         return playerResponseOrder;
     }
 
@@ -316,7 +333,11 @@ class Quizz {
     getPlayers() {
         let newPlayers = [];
         this.players.forEach(function (value, cle, map) {
-            newPlayers.push({ pseudo: value.pseudo, score: value.score });
+            newPlayers.push({
+                color: value.id,
+                pseudo: value.pseudo,
+                score: value.score,
+            });
         });
         return newPlayers;
     }
