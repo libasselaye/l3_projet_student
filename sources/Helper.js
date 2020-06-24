@@ -1,15 +1,31 @@
 "use strict";
 
 /**
+ * Enumération des Jokers dont pourrait se servir nos joueurs
+ * @enum Joker
+ */
+const Joker = Object.freeze({
+    INCREASE_REWARD: 0,
+    PUBLIC_NOTICE: 1,
+    DELETE_ONE: 2,
+});
+
+/**
+ * Enumération des types de Questions qui représentent les phases de jeu
+ * @enum Question
+ */
+const QuestionType = Object.freeze({
+    QUESTION_TYPE_PROPOSAL: "proposal",
+    QUESTION_TYPE_TRUE_FALSE: "true_or_false",
+    QUESTION_TYPE_NUMBER: "number",
+});
+
+/**
  * classe comportant des fonctions tierces qui ont pour but d'aider au bon fonctionnement
  * de l'application
  * @class Helper
  */
 class Helper {
-    static QUESTION_TYPE_PROPOSAL = "proposal";
-    static QUESTION_TYPE_TRUE_FALSE = "true_or_false";
-    static QUESTION_TYPE_NUMBER = "number";
-
     constructor() {}
 
     /**
@@ -48,4 +64,8 @@ class Helper {
     }
 }
 
-module.exports = Helper;
+module.exports = {
+    Joker: Joker,
+    QuestionType: QuestionType,
+    Helper: Helper,
+};

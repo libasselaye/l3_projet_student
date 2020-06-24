@@ -1,9 +1,10 @@
 "use strict";
 const Phase = require("./Phase.js");
-const player = require("./Player.js");
-const Helper = require("../Helper.js");
-const Player = player.Player;
-const Joker = player.Joker;
+const Player = require("./Player.js");
+const helper = require("../Helper.js");
+const Question = require("../models/question.js");
+const Joker = helper.Joker;
+const QuestionType = helper.QuestionType;
 const PLAYER_COLOR = ["primary", "success", "warning", "danger"];
 
 /**
@@ -227,7 +228,7 @@ class Quizz {
         if (this.players.size >= 2 && this.players.size <= 4) {
             this.started = true;
             this.currentPhase = await Phase.build(
-                Helper.QUESTION_TYPE_PROPOSAL
+                QuestionType.QUESTION_TYPE_PROPOSAL
             );
         } else {
             this.started = false;
@@ -247,14 +248,14 @@ class Quizz {
             switch (this.counterPhase) {
                 case 1:
                     this.currentPhase = await Phase.build(
-                        Helper.QUESTION_TYPE_TRUE_FALSE
+                        QuestionType.QUESTION_TYPE_TRUE_FALSE
                     );
                     this.counterPhase++;
                     quizzEnd = false;
                     break;
                 case 2:
                     this.currentPhase = await Phase.build(
-                        Helper.QUESTION_TYPE_NUMBER
+                        QuestionType.QUESTION_TYPE_NUMBER
                     );
                     this.counterPhase++;
                     quizzEnd = false;
