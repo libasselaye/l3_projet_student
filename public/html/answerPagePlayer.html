@@ -33,27 +33,36 @@
         <div class="container">
             <div class="row my-4">
                 <div class="col-4 offset-4">
-                    <img src="../images/logo.png" alt="logo" class="img-fluid" />
-                    
+                    <img
+                        src="../images/logo.png"
+                        alt="logo"
+                        class="img-fluid"
+                    />
                 </div>
             </div>
             <div class="row my-4">
                 <div class="col-8 offset-2">
-                    <button class="btn btn-primary btn-lg btn-block">
+                    <button
+                        class="btn btn-primary btn-lg btn-block answerSubmit"
+                    >
                         <span class="h1">Réponse 1</span>
                     </button>
                 </div>
             </div>
             <div class="row my-4">
                 <div class="col-8 offset-2">
-                    <button class="btn btn-primary btn-lg btn-block">
+                    <button
+                        class="btn btn-primary btn-lg btn-block answerSubmit"
+                    >
                         <span class="h1">Réponse 2</span>
                     </button>
                 </div>
             </div>
             <div class="row my-4">
                 <div class="col-8 offset-2">
-                    <button class="btn btn-primary btn-lg btn-block">
+                    <button
+                        class="btn btn-primary btn-lg btn-block answerSubmit"
+                    >
                         <span class="h1">Réponse 3</span>
                     </button>
                 </div>
@@ -111,5 +120,15 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"
         ></script>
+        <!-- JavaScripts -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/javascripts/ControlsSocket.js"></script>
+        <script src="/javascripts/ControlsCanvas.js"></script>
+        <script src="/javascripts/ControlsEvents.js"></script>
+        <script>
+            const canvas = new ControlsCanvas();
+            const socket = new ControlsSocket(canvas);
+            const events = new ControlsEvents(socket, canvas);
+        </script>
     </body>
 </html>
