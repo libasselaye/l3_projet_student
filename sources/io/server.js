@@ -2,7 +2,7 @@
 
 const Quizz = require("../engine/Quizz");
 
-const quizz = new Quizz();
+var quizz = new Quizz();
 
 const ImportSock = require("../../public/javascripts/ControlsEvents");
 
@@ -17,6 +17,9 @@ function io(server) {
     const io = socketio(server);
 
     io.on("connection", function (socket) {
+        socket.on("init_game", () => {
+            quizz = new Quizz();
+        });
         socket.on("register", (data) => {
             if (!data) {
                 io.emit("update_players", quizz.getPlayers());

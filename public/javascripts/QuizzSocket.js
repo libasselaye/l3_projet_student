@@ -52,4 +52,8 @@ class QuizzSocket {
     startGame() {
         this.socket.emit("start_game");
     }
+
+    initGame() {
+        this.socket.emit("init_game");
+    }
 }
