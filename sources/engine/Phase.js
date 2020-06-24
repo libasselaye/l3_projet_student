@@ -1,7 +1,8 @@
 "use strict";
 var Question = require("../models/question.js");
 var QuizzesLoader = require("./QuizzesLoader.js");
-const Helper = require("../Helper.js");
+const helper = require("../Helper.js");
+const QuestionType = helper.QuestionType;
 // compteur maximum
 var MAX_COUNTER = 5;
 
@@ -116,7 +117,7 @@ class Phase {
             let proposals = [];
             proposals[0] = this._currentQuestion.answer;
             switch (this.id) {
-                case Helper.QUESTION_TYPE_PROPOSAL:
+                case QuestionType.QUESTION_TYPE_PROPOSAL:
                     proposals.push(
                         this._currentQuestion.proposals[Helper.randomInt(0, 1)]
                     );
@@ -125,7 +126,7 @@ class Phase {
                         this._currentQuestion.proposals[i == 1 ? i + 1 : i]
                     );
                     break;
-                case Helper.QUESTION_TYPE_TRUE_FALSE:
+                case QuestionType.QUESTION_TYPE_TRUE_FALSE:
                     proposals.push(
                         this._currentQuestion.answer == "vrai" ? "faux" : "vrai"
                     );

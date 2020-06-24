@@ -1,14 +1,6 @@
 "use strict";
-
-/**
- * Enumération des Jokers dont pourrait se servir nos joueurs
- * @enum Joker
- */
-const Joker = Object.freeze({
-    INCREASE_REWARD: 0,
-    PUBLIC_NOTICE: 1,
-    DELETE_ONE: 2,
-});
+const helper = require("../Helper.js");
+const Joker = helper.Joker;
 
 /**
  * La classe Player permet de gérer un joueur
@@ -118,7 +110,4 @@ class Player {
     }
 }
 
-module.exports = {
-    Player: Player,
-    Joker: Joker,
-};
+module.exports = Player;

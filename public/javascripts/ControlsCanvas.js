@@ -11,7 +11,7 @@ class ControlsCanvas {
             "<h2>En attente...</h2>";
     }
 
-    drawProposals(data) {
+    drawProposals(data, controlsSocket) {
         if (data === undefined || data["proposals"] === undefined) return;
         let content =
             '<div class="row my-4">\
@@ -23,7 +23,7 @@ class ControlsCanvas {
             content +=
                 '<div class="row my-4">\
         <div class="col-8 offset-2">\
-            <button class="btn btn-primary btn-lg btn-block">\
+            <button class="btn btn-primary btn-lg btn-block response">\
                 <span class="h1">' +
                 data["proposals"][i] +
                 "</span>\
@@ -64,5 +64,6 @@ class ControlsCanvas {
         </div>\
     </div>';
         document.getElementById("controlsContent").innerHTML = content;
+        ControlsEvents.updateControlsEvents(controlsSocket);
     }
 }

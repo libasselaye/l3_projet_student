@@ -2,7 +2,7 @@
 
 const Quizz = require("../engine/Quizz");
 
-const quizz = new Quizz();
+var quizz = new Quizz();
 
 const ImportSock = require("../../public/javascripts/ControlsEvents");
 
@@ -17,9 +17,41 @@ function io(server) {
     const io = socketio(server);
 
     io.on("connection", function (socket) {
+        socket.on("init_game", () => {
+            quizz = new Quizz();
+        });
         socket.on("register", (data) => {
-            if (quizz.register(socket.id, data["pseudo"])) {
+            if (!data) {
                 io.emit("update_players", quizz.getPlayers());
+            } else {
+                if (quizz.register(socket.id, data["pseudo"])) {
+                    io.emit("update_players", quizz.getPlayers());
+                }
+            }
+        });
+
+        socket.on("send_player_response", (data) => {
+            let status = quizz.checkResponse(socket.id, data["response"]);
+            if (status == 1) {
+                // bonne réponse du joueur
+                console.log("Bonne réponse et pas le dernier à repondre");
+                console.log(quizz.getPlayers());
+            } else if (status == 10) {
+                console.log("Bonne réponse et t'es le dernier à repondre");
+                console.log(quizz.getPlayers());
+            } else if (status == -1) {
+                console.log(
+                    "Réponse fausse mais les autres peuvent encore répondre"
+                );
+                console.log(quizz.getPlayers());
+            } else if (status == -0) {
+                console.log(
+                    "Réponse fausse et personne ne peut encore répondre"
+                );
+                console.log(quizz.getPlayers());
+            } else {
+                console.log("T'as déjà répondu");
+                console.log(quizz.getPlayers());
             }
         });
 

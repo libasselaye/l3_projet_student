@@ -11,6 +11,7 @@ class ControlsEvents {
         this.socket = socket;
         this.canvas = canvas;
         this.button = document.querySelector("#pseudoFormSubmit");
+<<<<<<< HEAD
         // this.answerbutton = document.querySelector(".answerSubmit");
 
         // DOM events
@@ -26,6 +27,22 @@ class ControlsEvents {
         //         console.log(e.target.innerText);
         //     });
         // }
+=======
+        if (this.button) {
+            // DOM events
+            this.button.onclick = (event) => this.onSendPseudo(event);
+        }
+    }
+
+    static updateControlsEvents(controlsSocket) {
+        let myResponseButtons = document.getElementsByClassName("response");
+        for (let i = 0; i < myResponseButtons.length; i++) {
+            myResponseButtons[i].addEventListener("click", function (e) {
+                e.preventDefault();
+                controlsSocket.sendPlayerResponse(e.target.innerText);
+            });
+        }
+>>>>>>> 8f8d013975a60c468b20c98878551d0d8348cd92
     }
 
     onSendPseudo(event) {
@@ -40,6 +57,10 @@ class ControlsEvents {
     //     // console.log(event.currentTarget.value);
     //     console.log(event.target.value);
     // }
+
+    onClickResponse(event) {
+        console.log(event.target.innerText);
+    }
 
     onClickjoker(event) {
         //this.socket.reponse();

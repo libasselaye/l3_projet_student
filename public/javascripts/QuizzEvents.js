@@ -13,6 +13,13 @@ class QuizzEvents {
         if (this.button) {
             this.button.onclick = (event) => this.onPlayGame(event);
         }
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.key === "m") {
+                event.preventDefault();
+                console.log("CC");
+                socket.initGame();
+            }
+        });
     }
 
     onPlayGame(e) {

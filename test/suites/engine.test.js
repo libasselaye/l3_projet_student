@@ -1,32 +1,41 @@
 "use strict";
 const Phase = require("../../sources/engine/Phase.js");
-const player = require("../../sources/engine/Player.js");
-const Player = player.Player;
-const Joker = player.Joker;
+const Player = require("../../sources/engine/Player.js");
+const helper = require("../../sources/Helper.js");
+const Joker = helper.Joker;
 
 // Test de Phase
 describe("Test method of Phase", () => {
     test("Test Phase constructor", () => {
-        var phase = new Phase("number");
-        expect(phase.counter).toBe(5);
+        Phase.build(helper.QuestionType.QUESTION_TYPE_PROPOSAL).then(function (
+            phase
+        ) {
+            expect(phase.counter).toBe(5);
+        });
     });
 
     test("Test Phase nextQuestion", () => {
-        var phase = new Phase("number");
-        var question = phase.nextQuestion();
-        expect(question).not.toBeNull();
-        expect(phase.counter).toBe(4);
+        Phase.build(helper.QuestionType.QUESTION_TYPE_PROPOSAL).then(function (
+            phase
+        ) {
+            var question = phase.nextQuestion();
+            expect(question).not.toBeNull();
+            expect(phase.counter).toBe(4);
+        });
     });
 
     test("Test Phase isEndOfPhase", () => {
-        var phase = new Phase("number");
-        phase.nextQuestion();
-        phase.nextQuestion();
-        expect(phase.isEndOfPhase()).toBeFalsy();
-        phase.nextQuestion();
-        phase.nextQuestion();
-        phase.nextQuestion();
-        expect(phase.isEndOfPhase()).toBeTruthy();
+        Phase.build(helper.QuestionType.QUESTION_TYPE_PROPOSAL).then(function (
+            phase
+        ) {
+            phase.nextQuestion();
+            phase.nextQuestion();
+            expect(phase.isEndOfPhase()).toBeFalsy();
+            phase.nextQuestion();
+            phase.nextQuestion();
+            phase.nextQuestion();
+            expect(phase.isEndOfPhase()).toBeTruthy();
+        });
     });
 });
 
