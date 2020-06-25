@@ -1,7 +1,8 @@
 // importation du module mongoose
 const mongoose = require("mongoose");
 var mongo_connection_string =
-    process.env.MONGO_URI || "mongodb://localhost:27017/the_competitors_db";
+    process.env.MONGO_URI ||
+    "mongodb+srv://admin:JpqgGmJ397HusUY2@cluster0-xduxk.mongodb.net/the_competitors_db?retryWrites=true&w=majority";
 
 mongoose.connect(
     mongo_connection_string,

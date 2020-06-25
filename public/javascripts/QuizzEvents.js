@@ -30,7 +30,7 @@ class QuizzEvents {
 
     onStartGame(event) {
         this.socket.initGame();
-        window.location.href = "/monitor";
+        window.location.href = "/";
     }
 
     onPlayGame(e) {
