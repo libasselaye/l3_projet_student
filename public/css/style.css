@@ -1,40 +1,8 @@
-/* .conteneur{
-	height: 600px;
-	background-color: white;
-} */
-/* .image{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-     } */
-
-/* .center {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    
-} */
-
-/* .logo {
+.avatar {
     position: absolute;
-    top:-20px;
-    left:60px; 
-}*/
-/*body {
-    background: linear-gradient(to top, #969fc1 -47%, #ffffff 44%);
-    background-repeat: no-repeat; 
-    min-height: 100vh ;
-    max-height: 100vh ;
-}*/
-.avatar{
-    position: absolute;
-    top:180px;
-    left:50%;
-    transform: translate(-50%, -50%); 
+    top: 180px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .pseudoBox {
     top: 20%;
@@ -43,11 +11,12 @@
     width: 280px;
 }
 body {
-    font-family: 'times new roman';
+    font-family: "times new roman";
     font-weight: bold;
-    color: #fff;
-    background: url('../images/bg-pattern.png'), #7b4397;
-    background: url('../images/bg-pattern.png'), linear-gradient(to left, #7b4397, #dc2430);
+    /* color: #fff; */
+    background: url("../images/bg-pattern.png"), #7b4397;
+    background: url("../images/bg-pattern.png"),
+        linear-gradient(to left, #7b4397, #dc2430);
     /*background-image: url("../images/toureffeil.jpg");*/
 }
 .espace {
@@ -55,5 +24,5 @@ body {
 }
 
 .attente_jr {
-    font-family: 'times new roman';
+    font-family: "times new roman";
 }

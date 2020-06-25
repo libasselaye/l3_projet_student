@@ -31,6 +31,15 @@ class QuizzCanvas {
         }
         if (t >= 2 && t <= 4) {
             document.getElementById("playGame").disabled = false;
+            if (t == 4) {
+                document
+                    .getElementById("waitingPlayersSpan")
+                    .setAttribute("hidden", "hidden");
+            } else {
+                document
+                    .getElementById("waitingPlayersSpan")
+                    .removeAttribute("hidden");
+            }
         }
     }
 
@@ -40,6 +49,7 @@ class QuizzCanvas {
         if (progress) {
             progress.setAttribute("aria-valuenow", data);
             progress.setAttribute("style", "width: " + data + "%");
+            progress.innerText = data / 5 + "sec";
         }
     }
 
@@ -49,6 +59,9 @@ class QuizzCanvas {
             document
                 .querySelector("#pageThree")
                 .setAttribute("hidden", "hidden");
+            document
+                .querySelector("#pageFour")
+                .setAttribute("hidden", "hidden");
             document.getElementById("pageTwo").removeAttribute("hidden");
         }
         document.getElementById("questionValue").innerHTML = data["question"];
@@ -57,7 +70,6 @@ class QuizzCanvas {
 
     updateAnswer(data) {
         document.getElementById("responseValue").innerHTML = data;
-        // document.getElementById("responseDiv").removeAttribute("hidden");
     }
 
     updatePlayerZone(data) {
@@ -65,18 +77,37 @@ class QuizzCanvas {
         let contentValue = "";
         for (var i = 0; i < data.length; i++) {
             contentValue +=
-                '<td class="text-center"><em class="fa fa-user fa-4x text-' +
+                '<td class="text-center"><em class="fa fa-user fa-2x text-' +
                 data[i]["color"] +
                 '"></em>\
-            <div class="display-6"><em>' +
+            <div><small>' +
                 data[i]["pseudo"] +
-                '</em></div>\
+                '</small></div>\
             <div class="display-5"><strong>' +
                 data[i]["score"] +
                 "</strong></div>\
         </td>";
         }
+        let tabScores = document.getElementsByClassName("tabScore");
+        if (tabScores) {
+            for (var i = 0; i < tabScores.length; i++) {
+                tabScores[i].innerHTML = contentValue;
+            }
+        }
+    }
 
-        document.getElementById("tabScore").innerHTML = contentValue;
+    drawFinalPage(data) {
+        if (document.getElementById("pageFour").getAttribute("hidden")) {
+            document.querySelector("#pageOne").setAttribute("hidden", "hidden");
+            document.querySelector("#pageTwo").setAttribute("hidden", "hidden");
+            document
+                .querySelector("#pageThree")
+                .setAttribute("hidden", "hidden");
+            document.getElementById("pageFour").removeAttribute("hidden");
+        }
+
+        document.getElementById("winner").innerText = data[0]["pseudo"];
+
+        this.updatePlayerZone();
     }
 }

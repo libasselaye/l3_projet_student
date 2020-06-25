@@ -2,6 +2,7 @@
 const Phase = require("../../sources/engine/Phase.js");
 const Player = require("../../sources/engine/Player.js");
 const helper = require("../../sources/Helper.js");
+const Quizz = require("../../sources/engine/Quizz.js");
 const Joker = helper.Joker;
 
 // Test de Quizz

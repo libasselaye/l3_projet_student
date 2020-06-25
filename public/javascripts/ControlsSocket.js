@@ -26,6 +26,7 @@ class ControlsSocket {
             }
         });
         this.socket.on("player_response_status", (data) => {
+            console.log(data);
             canvas.playerResponseStatus(data);
         });
         this.socket.on("timer_step_timeout", (data) => {

@@ -33,6 +33,8 @@ function io(server) {
         });
 
         io.on("get_final_score", () => {
+            let p = quizz.sortPlayersByScore();
+            console.log(p);
             io.emit("sort_final_score", quizz.sortPlayersByScore());
         });
 

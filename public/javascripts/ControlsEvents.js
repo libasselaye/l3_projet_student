@@ -54,8 +54,7 @@ class ControlsEvents {
                 let p = document.querySelector("#phase3Response").value;
                 document.getElementById("responseFormSubmit").disabled = true;
                 // document.querySelector("#phase3Response").value = "";
-                console.log(p);
-                this.socket.sendPlayerResponse(p);
+                controlsSocket.sendPlayerResponse(p);
             });
         }
     }
@@ -71,6 +70,7 @@ class ControlsEvents {
     onClickJoker(event) {
         event.preventDefault();
         if (ControlsEvents.classExist(event.target, "disabled-image") == 1) {
+            alert("Vous aviez déjà fait usage de ce joker");
             return;
         }
 

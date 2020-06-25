@@ -83,32 +83,27 @@ class ControlsCanvas {
             document.getElementById("Joker2").setAttribute("hidden", "hidden");
             document.getElementById("Joker3").setAttribute("hidden", "hidden");
             content =
-                '<div class="row my-2">\
-        <div class="col-4 offset-4 text-center">\
-            <img src="../images/rob.png" alt="" height="120" />\
-        </div>\
-    </div>\
-    <div class="row my-2">\
-        <div class="col-6 col-md-4 offset-md-4 offset-3 px-4">\
-            <form class="form-inline">\
-                <div class="input-group mb-3">\
+                '<form class="justify-content-center">\
+            <div class="form-row">\
+                <div class="col-md-6 offset-md-2 col-8">\
                     <input\
                         type="text"\
                         class="form-control"\
                         id="phase3Response"\
-                        placeholder="Saisissez votre réponse"\
+                        placeholder="Entrez une valeur"\
                     />\
-                    <div class="input-group-append">\
-                        <button\
-                            type="submit"\
-                            class="btn btn-primary input-group-text"\
-                            id="responseFormSubmit"\
-                        >Valider</button>\
-                    </div>\
                 </div>\
-            </form>\
-        </div>\
-    </div>';
+                <div class="col-md-4 col-4">\
+                    <button\
+                        type="submit"\
+                        class="btn btn-outline"\
+                        id="responseFormSubmit"\
+                    >\
+                        Valider\
+                    </button>\
+                </div>\
+            </div>\
+        </form>';
         }
 
         document.getElementById("proposals").innerHTML = content;

@@ -10,16 +10,28 @@ class QuizzEvents {
         // Reference on the socket
         this.socket = socket;
         this.button = document.querySelector("#playGame");
+        this.buttonNewGame = document.querySelector("#startNewGame");
+        if (this.buttonNewGame) {
+            this.buttonNewGame.onclick = (event) => this.onStartGame(event);
+        }
+
         if (this.button) {
             this.button.onclick = (event) => this.onPlayGame(event);
         }
+
         document.addEventListener("keydown", function (event) {
             if (event.ctrlKey && event.key === "m") {
                 event.preventDefault();
-                console.log("CC");
+                console.log("Redémarrer");
                 socket.initGame();
             }
         });
+    }
+
+    onStartGame(event) {
+        event.preventDefault();
+        this.socket.initGame();
+        window.location.href = "/monitor";
     }
 
     onPlayGame(e) {

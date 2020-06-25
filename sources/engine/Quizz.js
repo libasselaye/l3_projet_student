@@ -193,12 +193,7 @@ class Quizz {
             if (question.answer == response) {
                 // calculer le score du joueur
                 // Score à renvoyer vers le moniteur
-                console.log(
-                    "reponse est: " +
-                        question.answer +
-                        " et reponse proposée: " +
-                        response
-                );
+
                 this.computePlayerScore(playerId, order);
                 trouve = true;
             }

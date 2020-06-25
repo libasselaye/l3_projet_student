@@ -33,17 +33,15 @@ class QuizzSocket {
                     this.getQuestion(0);
                     // this.getPlayersScore();
                 } else if (data == -2) {
-                    console.log("Partie complétement finie");
                     this.socket.emit("get_final_score");
                 } else if (data > 0) {
-                    console.log("nouvelle phase " + data);
-                    setTimeout(this.getQuestion.bind(this, 1), 3000);
+                    setTimeout(this.getQuestion.bind(this, 1), 500);
                 }
             }
         });
 
         this.socket.on("sort_final_score", (data) => {
-            console.log(data);
+            canvas.drawFinalPage(data);
         });
 
         this.socket.on("timer_step", (data) => {
