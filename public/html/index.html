@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Jeu de quizz</title>
+
+        <!-- Custom fonts -->
+        <link rel="stylesheet" href="../css/simple-line-icons/css/simple-line-icons.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link
+        href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+        <!-- Plugin CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+
+        <!-- Custom styles  -->
+        <link href="../css/new-age.min.css" rel="stylesheet">
+        <style>
+            body {
+                color: #fff;
+                background: url('../images/bg-pattern.png'), #7b4397;
+                background: url('../images/bg-pattern.png'), linear-gradient(to left, #7b4397, #dc2430);
+                height: 100%;
+            }
+            .topbar-left {
+                margin-top: 100px;
+            }
+            #principeModal {
+                color: black;
+                font-family: 'times new roman', Arial, Helvetica, sans-serif;
+            }
+            .modal-backdrop {
+                opacity: 0.5 !important;
+            }
+        </style>
+
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="topbar-left">
+                <span>
+                    <h1 class="mb-5">The Competitors</h1>
+                </span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3"></br>
+                <span>
+                    Jeu de quizz mettant en maximum 4 et au minimum 2 joueurs. La partie se deroulera en 3 phases.
+                </span>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div
+                class="col-md-2 pt-4">
+                <a href="#" class="btn btn-outline btn-xl js-scroll-trigger" data-toggle="modal" data-target="#principeModal">Lire Plus</a>
+            </div>
+            <div class="col-md-2 offset-md-6  pt-4">
+                <a href="/monitor" class="btn btn-outline btn-xl js-scroll-trigger">Moniteur</a>
+            </div>
+            <div class="col-md-2 pt-4">
+                <a href="/controls" class="btn btn-outline btn-xl js-scroll-trigger">Commande</a>
+            </div>
+        </div>
+        <!--modal-->
+<div class="modal fade" id="principeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Principe du Jeu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                C'est un jeu de quiz mettant en compétition au maximum 4 et au minimum 2 joueurs. La partie se déroulera en 3 phases, la première
+dénommée "3 propositions"(cela consiste à choisir une bonne réponse parmi 3 propositions à une question donnée) qui comporte 5
+questions, suivie d'une phase "vrai/faux" avec 5 questions également et enfin on aura la phase "Nombres" qui sera constituée que des
+questions dont les réponses seront des nombres. En résumé, une partie aura 15 questions. A l'issue d'une partie on aura le classement des joueurs. Ces 
+derniers ont également le choix d'utiliser 1 joker durant la partie. Ce jeu dispose de 3 types de jokers à savoir, le joker "-1"
+qui retire une fausse proposition parmi les 3 propositions données au préalable (joker disponible seulement sur la première phase). On
+dispose également du joker "x2" qui multiplie les points du joueurs par 2 s'il arrive à trouver la bonne réponse. Ensuite un troisième
+joker "avis du public" disponible également qu'à la phase 1 qui proposera une reponse parmi les 3 proposées 
+(ça peut être une vraie réponse tout comme une fausse).
+N.B: 
+- un joueur ne peut qu'utiliser un seul joker dans une partie. 
+- le temps de réponse à une question dépendra de la phase.
+- le point attribué au premier joueur ayant trouvé la bonne réponse dans les temps impartis sera toujours supérieur.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html>

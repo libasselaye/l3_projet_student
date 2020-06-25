@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Page de controle</title>
+
+        <link
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+            crossorigin="anonymous"
+        />
+        <link href="../css/new-age.min.css" rel="stylesheet" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <style>
+            #waiting {
+                position: absolute;
+                top: 45%;
+                left: 40%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="pageOne">
+            <div class="row my-2">
+                <div class="col-4 offset-4 text-center">
+                    <img
+                        src="../images/logo2.png"
+                        alt="logo"
+                        width="180"
+                        height="180"
+                        class="img-fluid"
+                    />
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-6 offset-3 px-4">
+                    <form class="justify-content-center">
+                        <div class="form-row">
+                            <div class="col-md-6 offset-md-2 col-8">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="pseudo"
+                                    placeholder="Entrez un pseudo"
+                                />
+                            </div>
+                            <div class="col-md-4 col-4">
+                                <button
+                                    type="submit"
+                                    class="btn btn-outline"
+                                    id="pseudoFormSubmit"
+                                >
+                                    Valider
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Page 2 -->
+        <div class="container" id="pageTwo" hidden="hidden">
+            <div id="waiting">
+                <div class="text-center">
+                    <div
+                        class="spinner-grow text-warning"
+                        style="width: 4rem; height: 4rem;"
+                        role="status"
+                    >
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <span class="h5"
+                        ><em>En attente des autres joueurs</em></span
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="container" id="pageThree" hidden="hidden">
+            <div class="row my-2">
+                <div class="col-4 offset-4">
+                    <img
+                        src="../images/logo.png"
+                        alt="logo"
+                        class="img-fluid"
+                    />
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-4 offset-4 text-center">
+                    <strong><em id="responseStatus"></em></strong>
+                </div>
+            </div>
+            <div id="proposals"></div>
+            <div class="row my-3">
+                <div class="col-8 px-5 offset-2">
+                    <div class="d-flex justify-content-between">
+                        <div class="col-4">
+                            <img
+                                id="Joker1"
+                                class="joker"
+                                width="80"
+                                height="30"
+                                src="../images/Joker02.png"
+                            />
+                        </div>
+                        <div class="col-4">
+                            <img
+                                id="Joker2"
+                                class="joker"
+                                width="80"
+                                height="30"
+                                src="../images/Joker01.png"
+                            />
+                        </div>
+                        <div class="col-4">
+                            <img
+                                id="Joker3"
+                                class="joker"
+                                width="80"
+                                height="30"
+                                src="../images/Joker03.png"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScripts -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/javascripts/ControlsSocket.js"></script>
+        <script src="/javascripts/ControlsCanvas.js"></script>
+        <script src="/javascripts/ControlsEvents.js"></script>
+        <script>
+            const canvas = new ControlsCanvas();
+            const socket = new ControlsSocket(canvas);
+            const events = new ControlsEvents(socket, canvas);
+        </script>
+    </body>
+</html>
