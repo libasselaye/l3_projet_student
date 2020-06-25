@@ -29,7 +29,6 @@ class QuizzEvents {
     }
 
     onStartGame(event) {
-        event.preventDefault();
         this.socket.initGame();
         window.location.href = "/monitor";
     }

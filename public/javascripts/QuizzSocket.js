@@ -31,7 +31,6 @@ class QuizzSocket {
                 if (data == -1) {
                     // Demander une question
                     this.getQuestion(0);
-                    // this.getPlayersScore();
                 } else if (data == -2) {
                     this.socket.emit("get_final_score");
                 } else if (data > 0) {
