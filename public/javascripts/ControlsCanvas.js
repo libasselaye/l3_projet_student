@@ -70,7 +70,7 @@ class ControlsCanvas {
                     '<div class="row my-2">\
                 <div class="col-8 offset-2">\
                     <button\
-                        class="btn btn-info btn-lg btn-block response"\
+                        class=" btn-lg btn-block response"\
                     >\
                         <span class="h5">' +
                     data["proposals"][i] +
