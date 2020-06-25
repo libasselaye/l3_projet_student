@@ -4,6 +4,43 @@ const Player = require("../../sources/engine/Player.js");
 const helper = require("../../sources/Helper.js");
 const Joker = helper.Joker;
 
+// Test de Quizz
+describe("Test method of Quizz", () => {
+    test("Test Quizz constructeur", () => {
+        var quizz = new Quizz();
+        expect(quizz.counterPhase).toBe(1);
+    });
+
+    test("Test Quizz step", () => {
+        var quizz = new Quizz();
+        quizz.step = 5;
+        expect(quizz.step).toBe(5);
+    });
+    test("Test Quizz started", () => {
+        var quizz = new Quizz();
+        quizz.started = true;
+        expect(quizz.started).not.toBeFalsy();
+    });
+
+    test("Test Quizz timer", () => {
+        var quizz = new Quizz();
+        expect(quizz.timer).toBeNull();
+    });
+
+    test("Test Quizz register", () => {
+        var quizz = new Quizz();
+        quizz.register("mon_id", "toto");
+        expect(quizz.register("mon_id", "toto")).toBe(true);
+    });
+
+    test("Test Quizz Players", () => {
+        var quizz = new Quizz();
+        quizz.register("mon_id", "libasse");
+        quizz.register("mon_id1", "marcel");
+        expect(quizz.getPlayers().length).toBe(2);
+    });
+});
+
 // Test de Phase
 describe("Test method of Phase", () => {
     test("Test Phase constructor", () => {

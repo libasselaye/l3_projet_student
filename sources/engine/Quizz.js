@@ -237,11 +237,15 @@ class Quizz {
     }
 
     /**
-     * Renvoi 0 si la partie est complétement terminé
-     * sinon 1 si une nouvelle question est disponible
+     * Renvoi 0 si la partie est complétement terminée
+     * sinon 1 si c'est une nouvelle phase
+     * et 2 si ce n'est pas une nouvelle phase mais que la partie n'est pas terminée
      */
     async play() {
         let quizzEnd = true;
+        let newPhase = false;
+        if (this.counterPhase == 1 && this.currentPhase.counter == 5)
+            newPhase = true;
         if (!this.currentPhase.isEndOfPhase()) {
             quizzEnd = false;
         } else {
@@ -252,6 +256,7 @@ class Quizz {
                     );
                     this.counterPhase++;
                     quizzEnd = false;
+                    newPhase = true;
                     break;
                 case 2:
                     this.currentPhase = await Phase.build(
@@ -259,6 +264,7 @@ class Quizz {
                     );
                     this.counterPhase++;
                     quizzEnd = false;
+                    newPhase = true;
                     break;
             }
         }
@@ -269,7 +275,7 @@ class Quizz {
         // else {
         this.playersResponse = [];
         this.currentPhase.nextQuestion();
-        return 1;
+        return newPhase ? 1 : 2;
     }
 
     /**
@@ -320,6 +326,14 @@ class Quizz {
         this.playersResponse.push(playerId);
         let playerResponseOrder = this.playersResponse.length;
         return playerResponseOrder;
+    }
+
+    sortPlayersByScore() {
+        let mPlayers = this.getPlayers();
+        mPlayers.sort(function (value1, value2) {
+            return value2.score - value1.score;
+        });
+        return mPlayers;
     }
 
     //fonction permettant d'afficher la question courante

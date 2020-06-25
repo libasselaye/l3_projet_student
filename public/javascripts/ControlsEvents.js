@@ -11,38 +11,53 @@ class ControlsEvents {
         this.socket = socket;
         this.canvas = canvas;
         this.button = document.querySelector("#pseudoFormSubmit");
-<<<<<<< HEAD
-        // this.answerbutton = document.querySelector(".answerSubmit");
 
-        // DOM events
-        this.button.onclick = (event) => this.onSendPseudo(event);
-        // if (this.answerbutton) {
-        //     this.answerbutton.onclick = (event) => this.onReceiveAnswer(event);
-        // }
-
-        let myButtons = document.getElementsByClassName("answerSubmit");
-        // for (let i = 0; i < myButtons.length; i++) {
-        //     myButtons[i].addEventListener("click", function (e) {
-        //         e.preventDefault();
-        //         console.log(e.target.innerText);
-        //     });
-        // }
-=======
         if (this.button) {
             // DOM events
             this.button.onclick = (event) => this.onSendPseudo(event);
         }
+
+        if (this.buttonResponse) {
+            this.button.onclick = (event) => this.onSendPhase3Response(event);
+        }
+
+        // Event for joker buttons
+        let buttonjoker = document.getElementsByClassName("joker");
+        for (let i = 0; i < buttonjoker.length; i++) {
+            buttonjoker[i].addEventListener(
+                "click",
+                this.onClickJoker.bind(this)
+            );
+        }
     }
 
     static updateControlsEvents(controlsSocket) {
+        // Event for response buttons
         let myResponseButtons = document.getElementsByClassName("response");
-        for (let i = 0; i < myResponseButtons.length; i++) {
-            myResponseButtons[i].addEventListener("click", function (e) {
+        if (myResponseButtons) {
+            for (let i = 0; i < myResponseButtons.length; i++) {
+                myResponseButtons[i].addEventListener("click", function (e) {
+                    e.preventDefault();
+                    for (let j = 0; j < myResponseButtons.length; j++) {
+                        myResponseButtons[j].disabled = true;
+                    }
+                    controlsSocket.sendPlayerResponse(e.target.innerText);
+                });
+            }
+        }
+        let responseSubmitButton = document.getElementById(
+            "responseFormSubmit"
+        );
+        if (responseSubmitButton) {
+            responseSubmitButton.addEventListener("click", function (e) {
                 e.preventDefault();
-                controlsSocket.sendPlayerResponse(e.target.innerText);
+                let p = document.querySelector("#phase3Response").value;
+                document.getElementById("responseFormSubmit").disabled = true;
+                // document.querySelector("#phase3Response").value = "";
+                console.log(p);
+                this.socket.sendPlayerResponse(p);
             });
         }
->>>>>>> 8f8d013975a60c468b20c98878551d0d8348cd92
     }
 
     onSendPseudo(event) {
@@ -52,18 +67,43 @@ class ControlsEvents {
         document.querySelector("#pseudo").value = "";
         this.canvas.afterRegister();
     }
-    // onReceiveAnswer(event) {
-    //     event.preventDefault();
-    //     // console.log(event.currentTarget.value);
-    //     console.log(event.target.value);
-    // }
 
-    onClickResponse(event) {
-        console.log(event.target.innerText);
+    onClickJoker(event) {
+        event.preventDefault();
+        if (ControlsEvents.classExist(event.target, "disabled-image") == 1) {
+            return;
+        }
+
+        let rep = confirm(
+            "Voulez-vraiment utiliser ce joker? Tout les jokers sont utilisables qu'une seule fois"
+        );
+        if (rep == false) {
+            return;
+        }
+
+        ControlsEvents.addClass(event.target, "disabled-image");
+
+        this.socket.jokerChoiceEvents(event.target.getAttribute("id"));
+
+        console.log("Yes ca marche joker");
     }
 
-    onClickjoker(event) {
-        //this.socket.reponse();
-        console.log("Yes ca marche joker");
+    static addClass(element, myClass) {
+        var arr;
+        arr = element.className.split(" ");
+        if (arr.indexOf(myClass) == -1) {
+            element.className += " " + myClass;
+        }
+    }
+
+    static classExist(element, mclassName) {
+        var arr;
+        arr = element.className.split(" ");
+        if (arr.indexOf(mclassName) == -1) {
+            // element.className += " " + mclassName;
+            return 0; // la classe n'existe pas
+        } else {
+            return 1; // la classe existe
+        }
     }
 }

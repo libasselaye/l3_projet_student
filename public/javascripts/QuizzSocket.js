@@ -24,25 +24,45 @@ class QuizzSocket {
             }
         });
         this.socket.on("push_question_to_monitor", (data) => {
-            if (phase != data["phase"]) {
-                console.log("nouvelle phase");
-                phase++;
-                setTimeout(canvas.drawQuestion(data), 3000);
-            } else {
-                canvas.drawQuestion(data);
+            canvas.drawQuestion(data);
+        });
+        this.socket.on("new_phase", (data) => {
+            if (data !== undefined) {
+                if (data == -1) {
+                    // Demander une question
+                    this.getQuestion(0);
+                    // this.getPlayersScore();
+                } else if (data == -2) {
+                    console.log("Partie complétement finie");
+                    this.socket.emit("get_final_score");
+                } else if (data > 0) {
+                    console.log("nouvelle phase " + data);
+                    setTimeout(this.getQuestion.bind(this, 1), 3000);
+                }
             }
         });
+
+        this.socket.on("sort_final_score", (data) => {
+            console.log(data);
+        });
+
         this.socket.on("timer_step", (data) => {
-            // console.log(data);
             canvas.updateProgressBar(data);
         });
-        this.socket.on("timer_step_timeout", (data) => {
-            console.log("Fin");
-        });
+
         this.socket.on("push_correct_response", (data) => {
-            console.log(data);
-            setTimeout(this.playGame(), 3000);
+            canvas.updateAnswer(data);
+            this.getPlayersScore();
+            setTimeout(this.playGame.bind(this), 5000);
         });
+        this.socket.on("players_score", (data) => {
+            canvas.updatePlayerZone(data);
+        });
+    }
+
+    getQuestion(data) {
+        this.socket.emit("send_question");
+        if (data == 1) this.getPlayersScore();
     }
 
     playGame() {
@@ -55,5 +75,9 @@ class QuizzSocket {
 
     initGame() {
         this.socket.emit("init_game");
+    }
+
+    getPlayersScore() {
+        this.socket.emit("send_players_score");
     }
 }

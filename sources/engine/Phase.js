@@ -2,6 +2,7 @@
 var Question = require("../models/question.js");
 var QuizzesLoader = require("./QuizzesLoader.js");
 const helper = require("../Helper.js");
+const Helper = helper.Helper;
 const QuestionType = helper.QuestionType;
 // compteur maximum
 var MAX_COUNTER = 5;
