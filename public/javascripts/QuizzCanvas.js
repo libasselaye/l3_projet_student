@@ -24,7 +24,7 @@ class QuizzCanvas {
             } else {
                 nodeWaitingPlayers.innerHTML +=
                     '<td class="text-center">\
-                    <em class="fa fa-user fa-4x text-secondary"></em>\
+                    <em class="fa fa-user fa-4x text-white"></em>\
                     <div class="display-6"><em></em></div>\
                 </td>';
             }
