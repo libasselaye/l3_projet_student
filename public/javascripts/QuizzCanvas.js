@@ -107,6 +107,9 @@ class QuizzCanvas {
         }
         if (data[0]["score"] != data[1]["score"]) {
             document.getElementById("winner").innerText = data[0]["pseudo"];
+            document
+                .getElementById("winnerLabel")
+                .setAttribute("hidden", "hidden");
         }
 
         this.updatePlayerZone();
