@@ -10,16 +10,15 @@ class QuizzEvents {
         // Reference on the socket
         this.socket = socket;
         this.button = document.querySelector("#playGame");
-        this.buttonNewGame = document.querySelector("startNewGame");
+        this.buttonNewGame = document.querySelector("#startNewGame");
+        this.buttonNewGame2 = document.querySelector("#startNewGame2");
 
         if (this.buttonNewGame) {
-            for (var i = 0; i < this.buttonNewGame.length; i++) {
-                this.buttonNewGame.addEventListener(
-                    "click",
-                    this.onStartGame.bind(this, event)
-                );
-            }
-            // this.buttonNewGame.onclick = (event) => this.onStartGame(event);
+            this.buttonNewGame.onclick = (event) => this.onStartGame(event);
+        }
+
+        if (this.buttonNewGame2) {
+            this.buttonNewGame2.onclick = (event) => this.onStartGame(event);
         }
 
         if (this.button) {
